@@ -214,13 +214,13 @@ class Html implements HtmlContract
      * @return string
      * @throws ValidationException
      */
-    public function gerarBoleto()
+    public function gerarBoleto($blade = 'BoletoHtmlRender::boleto')
     {
         if (count($this->boleto) == 0) {
             throw new ValidationException('Nenhum Boleto adicionado');
         }
 
-        return $this->getBlade()->make('BoletoHtmlRender::boleto', [
+        return $this->getBlade()->make($blade, [
             'localizacao_pix'       => $this->localizacao_pix,
             'boletos'               => $this->boleto,
             'css'                   => $this->writeCss(),
@@ -235,13 +235,13 @@ class Html implements HtmlContract
      * @return string
      * @throws ValidationException
      */
-    public function gerarCarne()
+    public function gerarCarne($blade = 'BoletoHtmlRender::carne')
     {
         if (count($this->boleto) == 0) {
             throw new ValidationException('Nenhum Boleto adicionado');
         }
 
-        return $this->getBlade()->make('BoletoHtmlRender::carne', [
+        return $this->getBlade()->make($blade, [
             'localizacao_pix'       => $this->localizacao_pix,
             'boletos'               => $this->boleto,
             'css'                   => $this->writeCss(),
